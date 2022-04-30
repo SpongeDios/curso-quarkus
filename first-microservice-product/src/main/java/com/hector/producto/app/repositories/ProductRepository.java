@@ -24,11 +24,7 @@ public class ProductRepository {
 
     @Transactional
     public void delete(Long id){
-//        Producto producto = entityManager.createQuery("SELECT p FROM Producto p WHERE p.id = :id")
-//                .setParameter("id", id)
-//                .unwrap(Producto.class);
         Producto producto = entityManager.find(Producto.class, id);
-
         if (Objects.isNull(producto))
             throw new IllegalArgumentException("El producto con el id: "+id + " no existe");
 
@@ -39,5 +35,6 @@ public class ProductRepository {
     public List<Producto> listAll(){
         return entityManager.createQuery("SELECT p FROM Producto p").getResultList();
     }
+
 
 }
